@@ -6,12 +6,26 @@ package pasur;
  */
 
 import ch.aplu.jcardgame.*;
+import logger.PasurLogger;
 
 import java.util.*;
 
 public abstract class Player
 {
     private static final int TARGET_VALUE = 11;
+    /**
+     * NEW ADDED PART:
+     * @
+     */
+    private final PasurLogger logger = PasurLogger.getInstance();
+    protected int currentRoundScore;
+
+    public void setCurrentRoundScore(int currentRoundScore) {
+        this.currentRoundScore = currentRoundScore;
+    }
+
+    protected int temRunningScore;
+    protected int totalRunningScore;
 
     protected int id;
     protected Hand hand;
@@ -34,8 +48,9 @@ public abstract class Player
         Set<Card> cardsToPick = null;
         if(playedCard != null)
         {
+            // CHANGED PART
             System.out.println(toString() + " plays " + Pasur.toString(playedCard));
-
+            logger.log(toString() + " plays " + Pasur.toString(playedCard));
             cardsToPick = pickCards(pool, playedCard);
         }
 

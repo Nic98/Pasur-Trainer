@@ -1,5 +1,7 @@
 package config;
 
+import logger.PasurLogger;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -10,6 +12,12 @@ public class Configuration
     private static final String ANIMATE_KEY = "Animate";
     private static final String PLAYER0_KEY = "Player0";
     private static final String PLAYER1_KEY = "Player1";
+
+    /**
+     * NEW ADDED PART:
+     * @
+     */
+    private final PasurLogger logger = PasurLogger.getInstance();
 
     private static Configuration configuration = null;
 
@@ -50,21 +58,29 @@ public class Configuration
             }
         }
 
+        /**
+         * CHANGED PART:
+         * @
+         */
         // Seed
         seed = Integer.parseInt(properties.getProperty(SEED_KEY));
         System.out.println("#Seed: " + seed);
-
+        // way 1
+        logger.log("#Seed: " + seed);
+        // way 2
+        // logger.logProperty(SEED_KEY, String.valueOf(seed));
         // Animate
         animate = Boolean.parseBoolean(properties.getProperty(ANIMATE_KEY));
         System.out.println("#Animate: " + animate);
-
+        logger.log("#Animate: " + animate);
         // Player0
         player0class = properties.getProperty(PLAYER0_KEY);
         System.out.println("#Player0: " + player0class);
-
+        logger.log("#Player0: " + player0class);
         // Player1
         player1class = properties.getProperty(PLAYER1_KEY);
         System.out.println("#Player1: " + player1class);
+        logger.log("#Player1: " + player1class);
     }
 
     public int getSeed()

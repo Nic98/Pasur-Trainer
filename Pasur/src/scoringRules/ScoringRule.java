@@ -1,4 +1,4 @@
-package scoringStrategy;
+package scoringRules;
 
 import ch.aplu.jcardgame.Hand;
 
@@ -7,10 +7,10 @@ import ch.aplu.jcardgame.Hand;
  * Interface for calculating scores base on
  * picked cards and surs in the current round.
  *
- * More strategies will implement the interface.
+ * More rules will implement this interface.
  * (Polymorphism)
  */
-public interface ScoringStrategy {
+public interface ScoringRule {
     /**
      *
      * @param pickedCards Current picked cards in the round

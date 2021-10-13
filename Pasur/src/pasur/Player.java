@@ -6,6 +6,7 @@ package pasur;
  */
 
 import ch.aplu.jcardgame.*;
+import logWriter.LogWriter;
 
 import java.util.*;
 
@@ -13,11 +14,18 @@ public abstract class Player
 {
     private static final int TARGET_VALUE = 11;
 
+    /**
+     * NEW ADDED ATTRIBUTES
+     * totalRoundScore: the overall score through the current round
+     * totalGameScore: the overall score through the whole game
+     * logWriter: write logs in the "pasur.log" file
+     */
     protected int totalRoundScore;
-
     protected int totalGameScore;
+    private LogWriter logWriter = LogWriter.getLogWriterInstance();
 
     protected int id;
+
 
     /**
      * Comment added for better understanding:
@@ -53,8 +61,8 @@ public abstract class Player
         Set<Card> cardsToPick = null;
         if(playedCard != null)
         {
-            System.out.println(toString() + " plays " + Pasur.toString(playedCard));
-
+            // System.out.println(toString() + " plays " + Pasur.toString(playedCard));
+            logWriter.writeLog(toString() + " plays " + Pasur.toString(playedCard));
             cardsToPick = pickCards(pool, playedCard);
         }
 

@@ -1,5 +1,7 @@
 package config;
 
+import logWriter.LogWriter;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -17,6 +19,12 @@ public class Configuration
     private boolean animate;
     private String player0class;
     private String player1class;
+
+    /**
+     * NEW ADDED ATTRIBUTES
+     * logWriter: write logs in the "pasur.log" file
+     */
+    private LogWriter logWriter = LogWriter.getLogWriterInstance();
 
     public static Configuration getInstance()
     {
@@ -52,19 +60,23 @@ public class Configuration
 
         // Seed
         seed = Integer.parseInt(properties.getProperty(SEED_KEY));
-        System.out.println("#Seed: " + seed);
+        // System.out.println("#Seed: " + seed);
+        logWriter.writeConfig(SEED_KEY, seed);
 
         // Animate
         animate = Boolean.parseBoolean(properties.getProperty(ANIMATE_KEY));
-        System.out.println("#Animate: " + animate);
+        //System.out.println("#Animate: " + animate);
+        logWriter.writeConfig(ANIMATE_KEY, animate);
 
         // Player0
         player0class = properties.getProperty(PLAYER0_KEY);
-        System.out.println("#Player0: " + player0class);
+        //System.out.println("#Player0: " + player0class);
+        logWriter.writeConfig(PLAYER0_KEY, player0class);
 
         // Player1
         player1class = properties.getProperty(PLAYER1_KEY);
-        System.out.println("#Player1: " + player1class);
+        //System.out.println("#Player1: " + player1class);
+        logWriter.writeConfig(PLAYER1_KEY, player1class);
     }
 
     public int getSeed()

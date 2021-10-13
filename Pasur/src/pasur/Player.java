@@ -14,8 +14,23 @@ public abstract class Player
     private static final int TARGET_VALUE = 11;
 
     protected int id;
+
+    /**
+     * Comment added for better understanding:
+     * The cards that currently the player holds
+     */
     protected Hand hand;
+    /**
+     * Comment added for better understanding:
+     * The cards picked up/selected by the player
+     * will be used to calculate score in the current deal-card round
+     */
     protected Hand pickedCards;
+    /**
+     * Comment added for better understanding:
+     * The cards that achieve surs (Game event)
+     * will be used to calculate score
+     */
     protected Hand surs;
 
     protected Player(int id)
@@ -42,11 +57,22 @@ public abstract class Player
         return new AbstractMap.SimpleEntry<>(playedCard, cardsToPick);
     }
 
+    /**
+     * Comment added for better understanding:
+     * @param pool The pool in the middle of the table
+     * @param playedCard The card that the player dealt
+     * @return The method will return a set of cards that picked
+     * by the player after the player dealt with a card.
+     */
     protected Set<Card> pickCards(Hand pool, Card playedCard)
     {
         List<Card> poolCards = pool.getCardList();
 
         Set<Card> cardsToPick = new HashSet<>();
+        /**
+         * Comment added for better understanding:
+         * A Jack will pick all the number cards and itself
+         */
         if(playedCard.getRank() == Rank.JACK)
         {
             for(int i = 0, len = poolCards.size(); i < len; i++)
@@ -58,6 +84,10 @@ public abstract class Player
                     cardsToPick.add(card);
                 }
             }
+        /**
+         * Comment added for better understanding:
+         * A King/Queen will pick themselves respectively
+         */
         }else if(playedCard.getRank() == Rank.KING || playedCard.getRank() == Rank.QUEEN)
         {
             Card candidateCardToPick = null;
@@ -79,6 +109,12 @@ public abstract class Player
             {
                 cardsToPick.add(candidateCardToPick);
             }
+        /**
+         * Comment added for better understanding:
+         * A numeric card will get all the possible solutions for:
+         * Summing up with cards in the pool to 11,
+         * and choose the best solution for picking up the cards in the pool
+         */
         }else
         {
             // the played card is a numeric card, so we need to see what are the potential sets of cards we can pick with it
@@ -101,6 +137,10 @@ public abstract class Player
         return cardsToPick;
     }
 
+    /**
+     * Comment added for better understanding:
+     * Method for get the best pick if a numeric card is played
+     */
     protected Set<Card> chooseBestCandidateSetToPick(List<Set<Card>> candidateSetsOfCardsToPick)
     {
         double valueGivenTo10ofDiamond = 3;
@@ -145,11 +185,21 @@ public abstract class Player
         return setWithMaxValue;
     }
 
+    /**
+     * Comment added for better understanding:
+     * Method for get all the solutions/combination that the current played card
+     * will sum up with the pool cards to 11
+     */
     private void findSetsOfCardsSummingToTarget(List<Card> cards, int targetValue, List<Set<Card>> setsOfCards)
     {
         _findSetsOfCardsSummingToTarget(cards, setsOfCards, targetValue, new ArrayList<>());
     }
 
+    /**
+     * Comment added for better understanding:
+     * Method for get all the solutions/combination that the current played card
+     * will sum up with the pool cards to 11
+     */
     private void _findSetsOfCardsSummingToTarget(List<Card> cards, List<Set<Card>> setsOfCards, int targetValue,
                                                  List<Card> partial)
     {
@@ -229,6 +279,14 @@ public abstract class Player
         return "Player" + id;
     }
 
+    /**
+     * EDITED PART:
+     * Right now the getScore will always return 0,
+     * so that in the game we can only see 0 point scored by each player,
+     * even if the player has satisfied with the scoring rule.
+     *
+     * @return the method will now return the actual score earned by the player.
+     */
     public int getScore()
     {
         return 0;

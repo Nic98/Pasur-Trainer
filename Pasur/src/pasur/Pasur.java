@@ -34,8 +34,22 @@ public class Pasur
     private boolean paused = true;
     private boolean gameStarted = false;
 
+    /**
+     * Comment added for better understanding:
+     * A class to bundle information about the card suits and ranks.
+     */
     private final Deck deck;
+    /**
+     * Comment added for better understanding:
+     * The deck initially with 52 cards,
+     * dealing cards to the pool and the players,
+     * a round is finished until the deck is empty.
+     */
     private Hand deckHand;
+    /**
+     * Comment added for better understanding:
+     * Represent the cards in the pool.
+     */
     private final Hand poolHand;
     private final Player[] players;
 
@@ -104,6 +118,10 @@ public class Pasur
         Player lastPlayerWhoPickedAcard = players[0];
         int roundOfGame = 0;
         List<Card> cardList = new ArrayList<>(1);
+        /**
+         * Comment added for better understanding:
+         * Simulation starts here, while there is no winner keep playing the game
+         */
         while(winner == null)
         {
             roundOfGame++;

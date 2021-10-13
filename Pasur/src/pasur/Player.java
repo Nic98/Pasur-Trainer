@@ -13,6 +13,10 @@ public abstract class Player
 {
     private static final int TARGET_VALUE = 11;
 
+    protected int totalRoundScore;
+
+    protected int totalGameScore;
+
     protected int id;
 
     /**
@@ -285,12 +289,28 @@ public abstract class Player
      * so that in the game we can only see 0 point scored by each player,
      * even if the player has satisfied with the scoring rule.
      *
-     * @return the method will now return the actual score earned by the player.
+     *
      */
     public int getScore()
     {
-        return 0;
+        return totalGameScore;
     }
+
+    public void setTotalGameScore(int totalGameScore) {
+        this.totalGameScore = totalGameScore;
+    }
+
+    public int getTotalRoundScore() {
+        return totalRoundScore;
+    }
+
+    public void setTotalRoundScore(int totalRoundScore) {
+        this.totalRoundScore = totalRoundScore;
+    }
+
+
+
+
 
     abstract Card selectToPlay();
 }

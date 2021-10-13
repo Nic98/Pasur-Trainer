@@ -8,7 +8,11 @@ package pasur;
 import ch.aplu.jcardgame.Card;
 import ch.aplu.jcardgame.Deck;
 import ch.aplu.jcardgame.Hand;
+import compositeScoringRules.CompositeScoringRule;
 import config.Configuration;
+import scoringRules.ScoringRule;
+import scoringRulesContext.ScoringRuleContext;
+import scoringRulesFactory.ScoringRuleFactory;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -34,6 +38,19 @@ public class Pasur
     private boolean paused = true;
     private boolean gameStarted = false;
 
+    /**
+     * NEW ADDED ATTRIBUTE:
+     */
+    private boolean isCurrentRoundFinished;
+    /**
+     * NEW ADDED CLASSES:
+     * rulesContext for communicating with all the scoring rules for Pasur access the rule methods
+     * ruleFactory for creating all the scoring rules for Pasur instantiation
+     * allRules for containing all the scoring rules for Pasur access them at once
+     */
+    private ScoringRuleContext rulesContext;
+    private ScoringRuleFactory ruleFactory = ScoringRuleFactory.getFactoryInstance();
+    private CompositeScoringRule allRules = new CompositeScoringRule();
     /**
      * Comment added for better understanding:
      * A class to bundle information about the card suits and ranks.
@@ -87,6 +104,35 @@ public class Pasur
             Hand surCards = new Hand(deck);
             player.setSurs(surCards);
         }
+
+        /**
+         * Instantiate all the scoring rules
+         * Adding more rules can simply input a new String (name of the scoring rule)
+         */
+        ScoringRule SevenPlusClubsRule = ruleFactory.createNewScoringRule("SevenPlusClubsRule");
+        ScoringRule DiamondTenRule =ruleFactory.createNewScoringRule("DiamondTenRule");
+        ScoringRule ClubTwoRule =ruleFactory.createNewScoringRule("ClubTwoRule");
+        ScoringRule AceRule =ruleFactory.createNewScoringRule("AceRule");
+        ScoringRule JackRule =ruleFactory.createNewScoringRule("JackRule");
+        ScoringRule SurRule =ruleFactory.createNewScoringRule("SurRule");
+
+        /**
+         * Put all the rules into the composite structure
+         * Pausr can call the calculateScore method at once
+         */
+        allRules.addRule(SevenPlusClubsRule);
+        allRules.addRule(DiamondTenRule);
+        allRules.addRule(ClubTwoRule);
+        allRules.addRule(AceRule);
+        allRules.addRule(JackRule);
+        allRules.addRule(SurRule);
+
+        /**
+         * Pasur class can just use the context class to communicate with one rule interface
+         * then is able to access all the scoring rules, instead access them one by one
+         */
+        rulesContext = new ScoringRuleContext(allRules);
+
     }
 
     public synchronized void pauseGame()
@@ -124,6 +170,7 @@ public class Pasur
          */
         while(winner == null)
         {
+            isCurrentRoundFinished = true;
             roundOfGame++;
             System.out.println("Round " + roundOfGame + " of the game starts...");
 
@@ -136,6 +183,7 @@ public class Pasur
 
             while (!deckHand.isEmpty())
             {
+                isCurrentRoundFinished = false;
                 if (paused) {
                     pauseGame();
                 }
@@ -273,6 +321,7 @@ public class Pasur
                 }
             }
 
+            isCurrentRoundFinished = true;
             updateScores();
 
             currentStartingPlayerPos++;
@@ -370,7 +419,16 @@ public class Pasur
                 scoreString += "        ";
 
             Player player = players[i];
-            scoreString += player.toString() + " = " + player.getScore() + " (" + player.getSurs().getNumberOfCards() + " Surs)";
+
+
+            int currRoundScore = rulesContext.calculateScore(player.pickedCards, player.surs);
+
+            player.setTotalRoundScore(player.getScore() + currRoundScore);
+
+            if (isCurrentRoundFinished) {
+                player.setTotalGameScore(player.getTotalRoundScore());
+            }
+            scoreString += player.toString() + " = " + player.getTotalRoundScore() + " (" + player.getSurs().getNumberOfCards() + " Surs)";
         }
 
         propertyChangePublisher.firePropertyChange(ON_UPDATE_SCORE, null, scoreString);

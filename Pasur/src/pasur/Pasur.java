@@ -55,8 +55,9 @@ public class Pasur
      * allRules for containing all the scoring rules for Pasur access them at once
      * rulesContext for communicating with all the scoring rules for Pasur access the rule methods
      * logWriter for write logs in the "pasur.log" file
+     * playerFactory for creating different class of player in future development
      */
-    // static final: only exist at once and will not be changed or modified
+    // static final: only exist by itself and will not be changed or modified
     private static final ScoringRuleFactory ruleFactory = ScoringRuleFactory.getFactoryInstance();
 
     // may remove or add more rules in future development
@@ -65,9 +66,10 @@ public class Pasur
     // as the rulesContext is actually the composite structure, it may be modified in the future implementation
     private ScoringRuleContext rulesContext;
 
-    // static final: only exist at once and will not be changed or modified
+    // static final: only exist by itself and will not be changed or modified
     private static final LogWriter logWriter = LogWriter.getLogWriterInstance();
 
+    // static final: only exist by itself and will not be changed or modified
     private static final PlayerFactory playerFactory = PlayerFactory.getPlayerFactoryInstance();
 
     /**

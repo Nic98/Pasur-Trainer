@@ -9,6 +9,14 @@ import ch.aplu.jcardgame.Hand;
  *
  * More rules will implement this interface.
  * (Polymorphism)
+ *
+ * Not using abstract instead using interface
+ * more specific reason will include in the report.
+ *
+ * We only want the class have a clear purpose that is
+ * to calculate the score by different rules.
+ *
+
  */
 public interface ScoringRule {
     /**

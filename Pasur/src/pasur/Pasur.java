@@ -487,7 +487,7 @@ public class Pasur
              * If the current round is finished,
              *
              * **
-             * here updates the scoreFromLastRound attribute,
+             * Here updates the scoreFromLastRound attribute,
              * to the overall game score (which is the last round score),
              * as the round is finished.
              */

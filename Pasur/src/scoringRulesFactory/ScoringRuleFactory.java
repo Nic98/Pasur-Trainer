@@ -37,6 +37,7 @@ public class ScoringRuleFactory {
      * @return a ScoringRule type object
      */
     public ScoringRule createNewScoringRule(String ruleName) {
+
         switch (ruleName) {
             case "SevenPlusClubsRule":
                 scoringRule = new SevenPlusClubsRule();

@@ -111,6 +111,7 @@ public class Pasur
         }
 
         /**
+         * UPDATED PART:
          * Instantiate all the scoring rules
          * Adding more rules can simply input a new String (name of the scoring rule)
          */
@@ -122,6 +123,7 @@ public class Pasur
         ScoringRule SurRule =ruleFactory.createNewScoringRule("SurRule");
 
         /**
+         * UPDATED PART:
          * Put all the rules into the composite structure
          * Pausr can call the calculateScore method at once
          */
@@ -133,6 +135,7 @@ public class Pasur
         allRules.addRule(SurRule);
 
         /**
+         * UPDATED PART:
          * Pasur class can just use the context class to communicate with one rule interface
          * then is able to access all the scoring rules, instead access them one by one
          */
@@ -176,7 +179,7 @@ public class Pasur
          */
         while(winner == null)
         {
-            isCurrentRoundFinished = true;
+
             roundOfGame++;
             // System.out.println("Round " + roundOfGame + " of the game starts...");
             logWriter.writeLog("Round " + roundOfGame + " of the game starts...");
@@ -189,7 +192,12 @@ public class Pasur
 
             while (!deckHand.isEmpty())
             {
+                /**
+                 * UPDATED PART:
+                 * set the attribute to false when a round starts
+                 */
                 isCurrentRoundFinished = false;
+
                 if (paused) {
                     pauseGame();
                 }
@@ -327,6 +335,10 @@ public class Pasur
                 }
             }
 
+            /**
+             * UPDATED PART:
+             * set the attribute to true when a round is finished
+             */
             isCurrentRoundFinished = true;
             updateScores();
 
@@ -379,6 +391,10 @@ public class Pasur
 
         // System.out.println(winningText);
         logWriter.writeLog(winningText);
+
+        /**
+         * Close the file when the game ends.
+         */
         logWriter.closeFile();
     }
 
@@ -429,6 +445,8 @@ public class Pasur
             Player player = players[i];
 
             /**
+             * cuurScore: the score earned from the current picked cards and surs.
+             *
              * Calculate the score will earned from the picked cards and surs
              * if the round at the moment just started, the currScore will be 0,
              * as there is neither card in the pickedCard nor surs.
@@ -437,19 +455,30 @@ public class Pasur
 
             /**
              * Add the currScore up with the overall game score
-             * and set it as the current round score.
+             * and set it as the overall game score.
+             *
+             * **
+             * Here not updates the scoreFromLastRound attribute,
+             * as the attribute always represents the score from last round
              */
-            player.setTotalRoundScore(player.getScore() + currScore);
+            player.setScore(player.getScoreFromLastRound() + currScore);
 
             /**
-             * If the current round is finished the overall game score
-             * will be changed accordingly, by summing up the final round score.
+             * If the current round is finished,
+             *
+             * **
+             * here updates the scoreFromLastRound attribute,
+             * to the overall game score (which is the last round score),
+             * as the round is finished.
              */
             if (isCurrentRoundFinished) {
-                player.setTotalGameScore(player.getTotalRoundScore());
+                player.setScoreFromLastRound(player.getScore());
             }
 
-            scoreString += player.toString() + " = " + player.getTotalRoundScore() + " (" + player.getSurs().getNumberOfCards() + " Surs)";
+            /**
+             * Always print out the overall game score
+             */
+            scoreString += player.toString() + " = " + player.getScore() + " (" + player.getSurs().getNumberOfCards() + " Surs)";
         }
 
         propertyChangePublisher.firePropertyChange(ON_UPDATE_SCORE, null, scoreString);

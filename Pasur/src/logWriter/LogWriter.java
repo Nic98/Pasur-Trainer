@@ -29,9 +29,11 @@ public class LogWriter {
     /**
      * Constructor for creating a LogWriter
      * It will create a "pasur.log" text file automatically
+     * "utf-8" stands for text file
      */
     private LogWriter() {
         try {
+            // create a file named "pasur.log" and it contains text
             printWriter = new PrintWriter((LOG_NAME), "utf-8");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -42,7 +44,7 @@ public class LogWriter {
 
     /**
      * LogWriter is using Singleton pattern
-     * @return
+     * @return itself when calling getLogWriterInstance()
      */
     public static LogWriter getLogWriterInstance() {
         if (logger == null) {
@@ -66,11 +68,14 @@ public class LogWriter {
      * @param configInfo Information included in the configuration e.g. 30006, true/false etc.
      */
     public void writeConfig(String configType, Object configInfo) {
-        String stringFyObject = String.valueOf(configInfo);
-        String config = String.format("#%s: %s", configType, stringFyObject);
+        String stringFiedInfo = String.valueOf(configInfo);
+        String config = String.format("#%s: %s", configType, stringFiedInfo);
         writeLog(config);
     }
 
+    /**
+     * Close the file when the game ends to prevent "leak"
+     */
     public void closeFile() {
         printWriter.close();
     }

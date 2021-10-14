@@ -51,4 +51,13 @@ public class CompositeScoringRule implements ScoringRule {
     public void addRule(ScoringRule addedRule) {
         allRules.add(addedRule);
     }
+
+    /**
+     * Method to get all the rules in the composite structure
+     * may need the method in future implementation
+     * @return an array list of scoring rule that the game is using
+     */
+    public ArrayList<ScoringRule> getAllRules() {
+        return this.allRules;
+    }
 }

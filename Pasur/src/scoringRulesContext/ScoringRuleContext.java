@@ -4,6 +4,8 @@ import ch.aplu.jcardgame.Hand;
 import scoringRules.ScoringRule;
 
 /**
+ * Structure learnt form https://refactoring.guru/design-patterns/strategy
+ * Strategy pattern used.
  * Indirection used.
  * The ScoringRuleContext class maintains a reference to the interface
  * of ScoringRule for accessing all the concrete strategies/rules,

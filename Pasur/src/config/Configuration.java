@@ -58,21 +58,33 @@ public class Configuration
             }
         }
 
+        /**
+         * write into file instead print out in the console
+         */
         // Seed
         seed = Integer.parseInt(properties.getProperty(SEED_KEY));
         // System.out.println("#Seed: " + seed);
         logWriter.writeConfig(SEED_KEY, seed);
 
+        /**
+         * write into file instead print out in the console
+         */
         // Animate
         animate = Boolean.parseBoolean(properties.getProperty(ANIMATE_KEY));
         //System.out.println("#Animate: " + animate);
         logWriter.writeConfig(ANIMATE_KEY, animate);
 
+        /**
+         * write into file instead print out in the console
+         */
         // Player0
         player0class = properties.getProperty(PLAYER0_KEY);
         //System.out.println("#Player0: " + player0class);
         logWriter.writeConfig(PLAYER0_KEY, player0class);
 
+        /**
+         * write into file instead print out in the console
+         */
         // Player1
         player1class = properties.getProperty(PLAYER1_KEY);
         //System.out.println("#Player1: " + player1class);

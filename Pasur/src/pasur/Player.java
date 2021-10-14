@@ -16,12 +16,12 @@ public abstract class Player
 
     /**
      * NEW ADDED ATTRIBUTES
-     * totalRoundScore: the overall score through the current round
-     * totalGameScore: the overall score through the whole game
+     * scoreFromLastRound: the score earned from the last round (not include the score from the current picked cards and surs)
+     * score: the overall score through the whole game
      * logWriter: write logs in the "pasur.log" file
      */
-    protected int totalRoundScore;
-    protected int totalGameScore;
+    protected int scoreFromLastRound;
+    protected int score;
     private LogWriter logWriter = LogWriter.getLogWriterInstance();
 
     protected int id;
@@ -301,23 +301,20 @@ public abstract class Player
      */
     public int getScore()
     {
-        return totalGameScore;
+        return score;
     }
 
-    public void setTotalGameScore(int totalGameScore) {
-        this.totalGameScore = totalGameScore;
+    public void setScore(int score) {
+        this.score = score;
     }
 
-    public int getTotalRoundScore() {
-        return totalRoundScore;
+    public int getScoreFromLastRound() {
+        return scoreFromLastRound;
     }
 
-    public void setTotalRoundScore(int totalRoundScore) {
-        this.totalRoundScore = totalRoundScore;
+    public void setScoreFromLastRound(int scoreFromLastRound) {
+        this.scoreFromLastRound = scoreFromLastRound;
     }
-
-
-
 
 
     abstract Card selectToPlay();

@@ -10,7 +10,15 @@ import java.util.ArrayList;
  * CompositeScoringRule is the class that contains all the sub-elements(scoring rules),
  * It has the ability to sum up the total score by calling the method calculateScore
  * in its sub-elements(scoring rules).
- * Also, it has the method to add or remove rules in future implementation.
+ *
+ * In the Pasur case, the composite pattern is actually a structure storing all the
+ * scoring rules with no more further complex leaf structure.
+ * Therefore, it is fine to not implement the ScoringRule interface for the current case,
+ * however for future development, there may be a rule including several sub-rules,
+ * then the composite pattern will come to use.
+ *
+ * Also, it has the method to add/remove (multiple)rules in future implementation.
+ *
  * It works with all sub-elements(scoring rules) only via the component interface (ScoringRule).
  */
 public class CompositeScoringRule implements ScoringRule {
@@ -50,6 +58,27 @@ public class CompositeScoringRule implements ScoringRule {
      */
     public void addRule(ScoringRule addedRule) {
         allRules.add(addedRule);
+    }
+
+    /**
+     * Add multiple rules at once
+     * @param newRuleList receive a rule list to add in the composite structure
+     */
+    public void addMultipleRules(ArrayList<ScoringRule> newRuleList) {
+        for (ScoringRule rule: newRuleList) {
+            allRules.add(rule);
+        }
+    }
+
+    /**
+     * Remove multiple rules at once
+     * @param removedRuleList receive a rule list to remove out of the composite structure
+     */
+
+    public void removeMultipleRules(ArrayList<ScoringRule> removedRuleList) {
+        for (ScoringRule rule: removedRuleList) {
+            allRules.remove(rule);
+        }
     }
 
     /**

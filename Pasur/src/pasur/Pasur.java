@@ -41,20 +41,31 @@ public class Pasur
 
     /**
      * NEW ADDED ATTRIBUTE:
+     * Initially set to false at the first round,
+     * recording the state of the current game,
+     * when a round is finished it will be set to true,
+     * and when new round starts, it will be set to false again.
      */
     private boolean isCurrentRoundFinished;
 
     /**
-     * NEW ADDED CLASSES:
-     * rulesContext for communicating with all the scoring rules for Pasur access the rule methods
+     * NEW ADDED ATTRIBUTE/CLASSES:
      * ruleFactory for creating all the scoring rules for Pasur instantiation
      * allRules for containing all the scoring rules for Pasur access them at once
+     * rulesContext for communicating with all the scoring rules for Pasur access the rule methods
      * logWriter for write logs in the "pasur.log" file
      */
-    private ScoringRuleContext rulesContext;
-    private ScoringRuleFactory ruleFactory = ScoringRuleFactory.getFactoryInstance();
+    // static final: only exist at once and will not be changed or modified
+    private static final ScoringRuleFactory ruleFactory = ScoringRuleFactory.getFactoryInstance();
+
+    // may remove or add more rules in future development
     private CompositeScoringRule allRules = new CompositeScoringRule();
-    private LogWriter logWriter = LogWriter.getLogWriterInstance();
+
+    // as the rulesContext is actually the composite structure, it may be modified in the future implementation
+    private ScoringRuleContext rulesContext;
+
+    // static final: only exist at once and will not be changed or modified
+    private static final LogWriter logWriter = LogWriter.getLogWriterInstance();
 
     /**
      * Comment added for better understanding:
@@ -122,10 +133,14 @@ public class Pasur
         ScoringRule JackRule =ruleFactory.createNewScoringRule("JackRule");
         ScoringRule SurRule =ruleFactory.createNewScoringRule("SurRule");
 
+
         /**
          * UPDATED PART:
          * Put all the rules into the composite structure
-         * Pausr can call the calculateScore method at once
+         * then Pausr can call the calculateScore method at once
+         * no need to get each rule class and call the method respectively
+         * For future development, if there is new scoring rule,
+         * just call the addRule method to add it to the composite structure
          */
         allRules.addRule(SevenPlusClubsRule);
         allRules.addRule(DiamondTenRule);
@@ -138,6 +153,11 @@ public class Pasur
          * UPDATED PART:
          * Pasur class can just use the context class to communicate with one rule interface
          * then is able to access all the scoring rules, instead access them one by one
+         *
+         * Use of combination of indirection and composite pattern
+         *
+         * the client(pausr) can directly access all the rules at once through the
+         * context which is also the composite structure.
          */
         rulesContext = new ScoringRuleContext(allRules);
 

@@ -7,15 +7,17 @@ import scoringRules.ScoringRule;
  * Structure learnt form https://refactoring.guru/design-patterns/strategy
  * Strategy pattern used.
  * Indirection used.
+ *
  * The ScoringRuleContext class maintains a reference to the interface
  * of ScoringRule for accessing all the concrete strategies/rules,
  * and the Client(Pasur class) only need to communicate with this class,
  * other than calling (calculateScore) for each strategy/rule at a time.
- * The use of tho class is also a part of the strategy pattern.
+ *
+ * The use of tho class is a combination of strategy pattern and indirection principle.
  */
 public class ScoringRuleContext {
 
-    private final ScoringRule scoringRuleContext;
+    private static ScoringRule scoringRuleContext;
 
     /**
      * Constructor

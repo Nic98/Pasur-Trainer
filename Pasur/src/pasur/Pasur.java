@@ -11,6 +11,7 @@ import ch.aplu.jcardgame.Hand;
 import compositeScoringRules.CompositeScoringRule;
 import config.Configuration;
 import logWriter.LogWriter;
+import playerFactory.PlayerFactory;
 import scoringRules.ScoringRule;
 import scoringRulesContext.ScoringRuleContext;
 import scoringRulesFactory.ScoringRuleFactory;
@@ -67,6 +68,8 @@ public class Pasur
     // static final: only exist at once and will not be changed or modified
     private static final LogWriter logWriter = LogWriter.getLogWriterInstance();
 
+    private static final PlayerFactory playerFactory = PlayerFactory.getPlayerFactoryInstance();
+
     /**
      * Comment added for better understanding:
      * A class to bundle information about the card suits and ranks.
@@ -89,17 +92,34 @@ public class Pasur
     private PropertyChangeSupport propertyChangePublisher = new PropertyChangeSupport(this);
 
     public Pasur(int nPlayers) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException,
-            InstantiationException
-    {
+            InstantiationException {
         // Instantiate players
         this.nPlayers = nPlayers;
-
         players = new Player[nPlayers];
-        Class<?> clazz;
-        clazz = Class.forName(Configuration.getInstance().getPlayer0class());
-        players[0] = (Player) clazz.getConstructor(int.class).newInstance(0);
-        clazz = Class.forName(Configuration.getInstance().getPlayer1class());
-        players[1] = (Player) clazz.getConstructor(int.class).newInstance(1);
+
+        /**
+         * DELETE PART:
+         *
+         * Class<?> clazz;
+         * clazz = Class.forName(Configuration.getInstance().getPlayer0class());
+         * players[0] = (Player) clazz.getConstructor(int.class).newInstance(0);
+         *
+         * clazz = Class.forName(Configuration.getInstance().getPlayer1class());
+         * players[1] = (Player) clazz.getConstructor(int.class).newInstance(1);
+         *
+         */
+
+
+        /**
+         * CHANGED PART:
+         * Now the program will instantiate all classes
+         * of players by the playerFactory, and not
+         * create by hard code one by one.
+         */
+        for (int i = 0; i <nPlayers; i++) {
+            Class<?> clazz = Class.forName(Configuration.getInstance().getAllPlayerClasses().get(i));
+            players[i] = playerFactory.createNewPlayer(clazz);
+        }
 
         deck = new Deck(Suit.values(), Rank.values(), "cover", suit -> Rank.getCardValuesArray());
 

@@ -4,6 +4,7 @@ import logWriter.LogWriter;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class Configuration
@@ -12,13 +13,28 @@ public class Configuration
     private static final String ANIMATE_KEY = "Animate";
     private static final String PLAYER0_KEY = "Player0";
     private static final String PLAYER1_KEY = "Player1";
-
+    /**
+     * WAITING FOR MORE PLAYERS:
+     * private static final String PLAYER1_KEY = "Player2";
+     * private String player2class;
+     *
+     * private static final String PLAYER1_KEY = "Player3";
+     * private String player3class;
+     * ... ...
+     */
     private static Configuration configuration = null;
 
     private int seed;
     private boolean animate;
     private String player0class;
     private String player1class;
+
+    /**
+     * NEW ADDED ATTRIBUTE:
+     * Keep all the names of player class in an array list
+     * and create them all at once by the playerFactory
+     */
+    private ArrayList<String> playerClasses = new ArrayList<String>();
 
     /**
      * NEW ADDED ATTRIBUTES
@@ -63,7 +79,6 @@ public class Configuration
          */
         // Seed
         seed = Integer.parseInt(properties.getProperty(SEED_KEY));
-        // System.out.println("#Seed: " + seed);
         logWriter.writeConfig(SEED_KEY, seed);
 
         /**
@@ -71,23 +86,22 @@ public class Configuration
          */
         // Animate
         animate = Boolean.parseBoolean(properties.getProperty(ANIMATE_KEY));
-        //System.out.println("#Animate: " + animate);
         logWriter.writeConfig(ANIMATE_KEY, animate);
 
         /**
          * write into file instead print out in the console
          */
         // Player0
-        player0class = properties.getProperty(PLAYER0_KEY);
-        //System.out.println("#Player0: " + player0class);
+        player0class = getPlayerClass(properties, PLAYER0_KEY);
+        playerClasses.add(player0class);
         logWriter.writeConfig(PLAYER0_KEY, player0class);
 
         /**
          * write into file instead print out in the console
          */
         // Player1
-        player1class = properties.getProperty(PLAYER1_KEY);
-        //System.out.println("#Player1: " + player1class);
+        player1class = getPlayerClass(properties, PLAYER1_KEY);
+        playerClasses.add(player0class);
         logWriter.writeConfig(PLAYER1_KEY, player1class);
     }
 
@@ -101,13 +115,39 @@ public class Configuration
         return animate;
     }
 
-    public String getPlayer0class()
-    {
-        return player0class;
+    /**
+     * UPDATED PART:
+     * getPlayer0class
+     * getPlayer1class
+     * Two methods are now being combined to one single method
+     * and adapt the situation that more players are joining the game
+     * //    public String getPlayer0class()
+     * //    {
+     * //        return player0class;
+     * //    }
+     * //
+     * //    public String getPlayer1class()
+     * //    {
+     * //        return player1class;
+     * //    }
+     */
+
+
+    /**
+     * NEW ADDED METHOD:
+     * @param properties
+     * @param PlayerKey String of key name of the player
+     * @return return a string of the class name of the player
+     */
+    public String getPlayerClass(Properties properties, String PlayerKey) {
+        return properties.getProperty(PlayerKey);
     }
 
-    public String getPlayer1class()
-    {
-        return player1class;
+    /**
+     * NEW ADDED METHOD:
+     * @return A list of class name of the players
+     */
+    public ArrayList<String> getAllPlayerClasses() {
+        return this.playerClasses;
     }
 }

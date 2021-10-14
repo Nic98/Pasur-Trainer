@@ -120,7 +120,7 @@ public class Pasur
          */
         for (int i = 0; i <nPlayers; i++) {
             Class<?> clazz = Class.forName(Configuration.getInstance().getAllPlayerClasses().get(i));
-            players[i] = playerFactory.createNewPlayer(clazz);
+            players[i] = playerFactory.createNewPlayer(i, clazz);
         }
 
         deck = new Deck(Suit.values(), Rank.values(), "cover", suit -> Rank.getCardValuesArray());

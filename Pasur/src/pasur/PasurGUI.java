@@ -28,7 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PasurGUI implements PropertyChangeListener
 {
     private static final int SCREEN_WIDTH = 1024;
-    private static final int SCREEN_HEIGHT = 650;
+    private static final int SCREEN_HEIGHT = 450;
     private static final int GAP = 20;
 
     private final int cardWidth;

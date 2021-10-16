@@ -144,6 +144,12 @@ public class Pasur
         }
 
         /**
+         * Step1. Create all rules respectively at the start of the game by a ruleFactory
+         * Step2. Put all the created rules into the composite structure
+         * Step3. Connect the Pasur with the contextClass which is the composite structure contains all scoring rules
+         */
+
+        /**
          * UPDATED PART:
          * Instantiate all the scoring rules
          * Adding more rules can simply input a new String (name of the scoring rule)

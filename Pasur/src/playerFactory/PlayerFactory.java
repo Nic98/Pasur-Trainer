@@ -33,9 +33,9 @@ public class PlayerFactory {
      * @param index index of the player in the game e.g. 1st 2nd 3rd 4th ...
      * @param clazz class name of the new player
      * @return the class Player Object
-
      */
-    public Player createNewPlayer(int index, Class clazz) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public Player createNewPlayer(int index, Class clazz) throws NoSuchMethodException, InvocationTargetException,
+            InstantiationException, IllegalAccessException {
         return (Player) clazz.getConstructor(int.class).newInstance(index);
     }
 }

@@ -55,12 +55,12 @@ public class ScoringRuleFactory {
                 scoringRule = new CheckCardExistRule(2, Suit.CLUBS, Rank.TWO);
                 break;
             case "AceRule":
-                scoringRule = new AceRule();
-                // scoringRule = new ChecknRanksRule(1, Rank.ACE);
+                // scoringRule = new AceRule();
+                scoringRule = new ChecknRanksRule(1, Rank.ACE);
                 break;
             case "JackRule":
-                scoringRule = new JackRule();
-                //scoringRule = new ChecknRanksRule(1, Rank.JACK);
+                // scoringRule = new JackRule();
+                scoringRule = new ChecknRanksRule(1, Rank.JACK);
                 break;
             case "SurRule":
                 scoringRule = new SurRule();

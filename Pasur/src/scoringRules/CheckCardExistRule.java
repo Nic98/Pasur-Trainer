@@ -6,9 +6,9 @@ import pasur.Suit;
 
 public class CheckCardExistRule implements ScoringRule{
 
-    private static int SCORE_PER_TARGET;
-    private static Suit TARGET_SUIT;
-    private static Rank TARGET_RANK;
+    private final int SCORE_PER_TARGET;
+    private final Suit TARGET_SUIT;
+    private final Rank TARGET_RANK;
 
     public CheckCardExistRule(int score, Suit suit, Rank rank) {
         this.SCORE_PER_TARGET = score;
@@ -23,8 +23,6 @@ public class CheckCardExistRule implements ScoringRule{
      */
     @Override
     public int calculateScore(Hand pickedCards, Hand surs) {
-        System.out.println(TARGET_SUIT);
-        System.out.println(TARGET_RANK);
         if (pickedCards.getCard(TARGET_SUIT, TARGET_RANK) != null ||
                 surs.getCard(TARGET_SUIT, TARGET_RANK) != null) {
             return SCORE_PER_TARGET;

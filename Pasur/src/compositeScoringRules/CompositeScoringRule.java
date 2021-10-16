@@ -57,6 +57,7 @@ public class CompositeScoringRule implements ScoringRule {
      * @param addedRule new scoring rule to add
      */
     public void addRule(ScoringRule addedRule) {
+
         allRules.add(addedRule);
     }
 

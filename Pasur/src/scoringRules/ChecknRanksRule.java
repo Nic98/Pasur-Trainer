@@ -5,8 +5,8 @@ import pasur.Rank;
 
 public class ChecknRanksRule implements ScoringRule{
 
-    private static int SCORE_PER_TARGET;
-    private static Rank TARGET_RANK;
+    private final int SCORE_PER_TARGET;
+    private final Rank TARGET_RANK;
 
     public ChecknRanksRule(int score, Rank rank) {
         this.SCORE_PER_TARGET  = score;

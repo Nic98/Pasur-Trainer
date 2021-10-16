@@ -15,6 +15,8 @@ public class Configuration
     private static final String PLAYER1_KEY = "Player1";
     /**
      * WAITING FOR MORE PLAYERS:
+     * E.g.
+     *
      * private static final String PLAYER1_KEY = "Player2";
      * private String player2class;
      *
@@ -22,6 +24,7 @@ public class Configuration
      * private String player3class;
      * ... ...
      */
+
     private static Configuration configuration = null;
 
     private int seed;
@@ -121,6 +124,7 @@ public class Configuration
      * getPlayer1class
      * Two methods are now being combined to one single method
      * and adapt the situation that more players are joining the game
+     *
      * //    public String getPlayer0class()
      * //    {
      * //        return player0class;
@@ -135,7 +139,7 @@ public class Configuration
 
     /**
      * NEW ADDED METHOD:
-     * @param properties
+     * @param properties the properties file which contains the information of the type of player
      * @param PlayerKey String of key name of the player
      * @return return a string of the class name of the player
      */

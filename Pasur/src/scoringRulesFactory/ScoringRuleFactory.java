@@ -3,6 +3,8 @@ package scoringRulesFactory;
 import scoringRules.*;
 
 /**
+ * The combination patterns (factory+strategy) learnt form workshop 8.
+ *
  * Factory pattern used & Singleton pattern used
  * There is only one factory needed in the whole game project.
  * The class is used for creating different scoring rules

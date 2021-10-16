@@ -3,6 +3,8 @@ package scoringRules;
 import ch.aplu.jcardgame.Hand;
 
 /**
+ * The combination patterns (factory+strategy) learnt form workshop 8.
+ *
  * Strategy pattern used
  * Interface for calculating scores base on
  * picked cards and surs in the current round.

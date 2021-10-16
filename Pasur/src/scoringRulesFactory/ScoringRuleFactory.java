@@ -1,5 +1,7 @@
 package scoringRulesFactory;
 
+import pasur.Rank;
+import pasur.Suit;
 import scoringRules.*;
 
 /**
@@ -45,16 +47,20 @@ public class ScoringRuleFactory {
                 scoringRule = new SevenPlusClubsRule();
                 break;
             case "DiamondTenRule":
-                scoringRule = new DiamondTenRule();
+                // scoringRule = new DiamondTenRule();
+                scoringRule = new CheckCardExistRule(3, Suit.DIAMONDS, Rank.TEN);
                 break;
             case "ClubTwoRule":
-                scoringRule = new ClubTwoRule();
+                //scoringRule = new ClubTwoRule();
+                scoringRule = new CheckCardExistRule(2, Suit.CLUBS, Rank.TWO);
                 break;
             case "AceRule":
                 scoringRule = new AceRule();
+                // scoringRule = new ChecknRanksRule(1, Rank.ACE);
                 break;
             case "JackRule":
                 scoringRule = new JackRule();
+                //scoringRule = new ChecknRanksRule(1, Rank.JACK);
                 break;
             case "SurRule":
                 scoringRule = new SurRule();

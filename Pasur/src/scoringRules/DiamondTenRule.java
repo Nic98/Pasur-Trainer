@@ -23,6 +23,7 @@ public class DiamondTenRule implements ScoringRule{
                 surs.getCard(Suit.DIAMONDS, Rank.TEN) != null) {
             return SCORE;
         }
+
         return 0;
     }
 }

@@ -4,12 +4,22 @@ import ch.aplu.jcardgame.Hand;
 import pasur.Rank;
 import pasur.Suit;
 
+/**
+ * The general rule to check one card is in the player's
+ * pickedHand or surs deck, then player will earn score
+ */
 public class CheckCardExistRule implements ScoringRule{
 
+    /**
+     * Scoring&Counting&Target constant can be changed in future implementation
+     */
     private final int SCORE_PER_TARGET;
     private final Suit TARGET_SUIT;
     private final Rank TARGET_RANK;
 
+    /**
+     * Constructor
+     */
     public CheckCardExistRule(int score, Suit suit, Rank rank) {
         this.SCORE_PER_TARGET = score;
         this.TARGET_SUIT = suit;

@@ -17,7 +17,6 @@ public class SurRule implements ScoringRule {
      */
     @Override
     public int calculateScore(Hand pickedCards, Hand surs) {
-
         return surs.getNumberOfCards() * SCORE;
     }
 }

@@ -490,7 +490,7 @@ public class Pasur
              * if the round at the moment just started, the currScore will be 0,
              * as there is neither card in the pickedCard nor surs.
              */
-            int currScore = rulesContext.calculateScore(player.pickedCards, player.surs);
+            int currScore = rulesContext.calculateScore(player.getPickedCards(), player.getSurs());
 
             /**
              * Add the currScore up with the overall game score

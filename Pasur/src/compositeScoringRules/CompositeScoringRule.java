@@ -60,27 +60,7 @@ public class CompositeScoringRule implements ScoringRule {
 
         allRules.add(addedRule);
     }
-
-    /**
-     * Add multiple rules at once
-     * @param newRuleList receive a rule list to add in the composite structure
-     */
-    public void addMultipleRules(ArrayList<ScoringRule> newRuleList) {
-        for (ScoringRule rule: newRuleList) {
-            allRules.add(rule);
-        }
-    }
-
-    /**
-     * Remove multiple rules at once
-     * @param removedRuleList receive a rule list to remove out of the composite structure
-     */
-
-    public void removeMultipleRules(ArrayList<ScoringRule> removedRuleList) {
-        for (ScoringRule rule: removedRuleList) {
-            allRules.remove(rule);
-        }
-    }
+    
 
     /**
      * Method to get all the rules in the composite structure

@@ -11,7 +11,7 @@ import pasur.Suit;
 public class CheckCardExistRule implements ScoringRule{
 
     /**
-     * Scoring&Counting&Target constant can be changed in future implementation
+     * Scoring&TargetSuit&TargetRank constant can be changed in future implementation
      */
     private final int SCORE_PER_TARGET;
     private final Suit TARGET_SUIT;

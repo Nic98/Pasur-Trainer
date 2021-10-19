@@ -11,7 +11,7 @@ import pasur.Suit;
 public class CheckMultiSuitsRule implements ScoringRule{
 
     /**
-     * Scoring&Counting&Target constant can be changed in future implementation
+     * Scoring&Counting&TargetSuit constant can be changed in future implementation
      */
     private final int TARGET_SCORE;
     private final int N_SUITS_REQUIRED;

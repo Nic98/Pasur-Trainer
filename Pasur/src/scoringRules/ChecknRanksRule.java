@@ -10,7 +10,7 @@ import pasur.Rank;
 public class ChecknRanksRule implements ScoringRule {
 
     /**
-     * Scoring&Counting&Target constant can be changed in future implementation
+     * Scoring&TargetRank constant can be changed in future implementation
      */
     private final int SCORE_PER_TARGET;
     private final Rank TARGET_RANK;

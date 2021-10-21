@@ -24,8 +24,8 @@ public class ScoringRuleContext {
      * @param scoringRuleContext create a scoringRuleContext for Pasur class
      *                           in order to use its method calculateScore
      */
-
     public ScoringRuleContext(CompositeScoringRule scoringRuleContext) {this.scoringRuleContext = scoringRuleContext;};
+    
     /**
      *
      * @param pickedCards Current picked cards in the round

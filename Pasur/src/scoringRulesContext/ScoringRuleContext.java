@@ -37,7 +37,7 @@ public class ScoringRuleContext {
     }
 
     /**
-     * Handling Pasur class adding a set of new rules into the composite structure,
+     * Handling Pasur class adding a set of new rules/or a single rule into the composite structure,
      * for future development, there may be a complete MODE C of game, that combine
      * the set of rules A form MODE A and set of rules B from MODE B,
      * the MODE C combine the rules for A and B,
@@ -50,7 +50,7 @@ public class ScoringRuleContext {
 
 
     /**
-     * Handling Pasur class remove a set of rules from the composite structure,
+     * Handling Pasur class remove a set of rules/or a single rule from the composite structure,
      * for future development, there may be a complete MODE of game,
      * that don't one part of the rules from the current MODE,
      * then it's easy to just call the below method.

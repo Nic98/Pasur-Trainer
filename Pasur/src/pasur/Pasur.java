@@ -181,12 +181,12 @@ public class Pasur
          * For future development, if there is new scoring rule,
          * just call the addOneRule method to add it to the composite structure THROUGH THE RuleContext
          */
-        rulesContext.addOneRule(SevenPlusClubsRule);
-        rulesContext.addOneRule(DiamondTenRule);
-        rulesContext.addOneRule(ClubTwoRule);
-        rulesContext.addOneRule(AceRule);
-        rulesContext.addOneRule(JackRule);
-        rulesContext.addOneRule(SurRule);
+        rulesContext.addRule(SevenPlusClubsRule);
+        rulesContext.addRule(DiamondTenRule);
+        rulesContext.addRule(ClubTwoRule);
+        rulesContext.addRule(AceRule);
+        rulesContext.addRule(JackRule);
+        rulesContext.addRule(SurRule);
     }
 
     public synchronized void pauseGame()

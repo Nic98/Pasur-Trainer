@@ -37,41 +37,27 @@ public class ScoringRuleContext {
     }
 
     /**
-     * Handling Pasur class adding a new scoring rule into the composite structure
-     * @param newAddedRule new added scoring rule
-     */
-    public void addOneRule(ScoringRule newAddedRule) {
-        this.scoringRuleContext.addRule(newAddedRule);
-    }
-
-    /**
      * Handling Pasur class adding a set of new rules into the composite structure,
      * for future development, there may be a complete MODE C of game, that combine
      * the set of rules A form MODE A and set of rules B from MODE B,
      * the MODE C combine the rules for A and B,
      * then it's easy to just call the below method.
-     * @param newSetRules new added set of scoring rules
+     * @param newAddedRule new added scoring rule
      */
-    public void addOneSetRules(CompositeScoringRule newSetRules) {
-        this.scoringRuleContext.addRule(newSetRules);
+    public void addRule(ScoringRule newAddedRule) {
+        this.scoringRuleContext.addRule(newAddedRule);
     }
 
-    /**
-     * Handling Pasur class remove a scoring rule from the composite structure
-     * @param removedRule target scoring rule to be deleted
-     */
-    public void removeOneRule(ScoringRule removedRule) {
-        this.scoringRuleContext.removeRule(removedRule);
-    }
 
     /**
      * Handling Pasur class remove a set of rules from the composite structure,
      * for future development, there may be a complete MODE of game,
      * that don't one part of the rules from the current MODE,
      * then it's easy to just call the below method.
-     * @param removedSetRules set of scoring rules needed to be deleted
      */
-    public void removeOneSetRules(CompositeScoringRule removedSetRules) {
-        this.scoringRuleContext.removeRule(removedSetRules);
+    public void removeRule(ScoringRule removedRule) {
+        this.scoringRuleContext.removeRule(removedRule);
     }
+
+
 }

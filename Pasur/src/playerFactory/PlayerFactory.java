@@ -36,6 +36,7 @@ public class PlayerFactory {
      */
     public Player createNewPlayer(int index, Class clazz) throws NoSuchMethodException, InvocationTargetException,
             InstantiationException, IllegalAccessException {
+
         return (Player) clazz.getConstructor(int.class).newInstance(index);
     }
 }

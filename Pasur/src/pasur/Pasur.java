@@ -161,22 +161,6 @@ public class Pasur
         ScoringRule JackRule =ruleFactory.createNewScoringRule("JackRule");
         ScoringRule SurRule =ruleFactory.createNewScoringRule("SurRule");
 
-
-        /**
-         * UPDATED PART:
-         * Put all the rules into the composite structure
-         * then Pausr can call the calculateScore method at once
-         * no need to get each rule class and call the method respectively
-         * For future development, if there is new scoring rule,
-         * just call the addRule method to add it to the composite structure
-         */
-        allRules.addRule(SevenPlusClubsRule);
-        allRules.addRule(DiamondTenRule);
-        allRules.addRule(ClubTwoRule);
-        allRules.addRule(AceRule);
-        allRules.addRule(JackRule);
-        allRules.addRule(SurRule);
-
         /**
          * UPDATED PART:
          * Pasur class can just use the context class to communicate with one rule interface
@@ -189,6 +173,20 @@ public class Pasur
          */
         rulesContext = new ScoringRuleContext(allRules);
 
+        /**
+         * UPDATED PART:
+         * Put all the rules into the composite structure through the rulesContext
+         * then Pausr can call the calculateScore method at once
+         * no need to get each rule class and call the method respectively
+         * For future development, if there is new scoring rule,
+         * just call the addOneRule method to add it to the composite structure THROUGH THE RuleContext
+         */
+        rulesContext.addOneRule(SevenPlusClubsRule);
+        rulesContext.addOneRule(DiamondTenRule);
+        rulesContext.addOneRule(ClubTwoRule);
+        rulesContext.addOneRule(AceRule);
+        rulesContext.addOneRule(JackRule);
+        rulesContext.addOneRule(SurRule);
     }
 
     public synchronized void pauseGame()

@@ -104,7 +104,7 @@ public class Configuration
          */
         // Player1
         player1class = getPlayerClass(properties, PLAYER1_KEY);
-        playerClasses.add(player0class);
+        playerClasses.add(player1class);
         logWriter.writeConfig(PLAYER1_KEY, player1class);
     }
 

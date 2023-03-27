@@ -18,5 +18,8 @@ The game of Pasur involves dealing four cards to each player and placing four fa
 ## Scoring and Logging
 The project involves adding scoring and logging features to the existing Pasur Trainer. The implementation should be flexible, allowing for future maintenance and modification by the NERD team. The scoring should be based on the rules of the Pasur game, and the logging should track the sessions of the game, including scores for each player.
 
+## Programming language
+Java
+
 ## Conclusion
 This project involves adding scoring and logging features to an existing Pasur card game trainer, with a flexible design that allows for future maintenance and modification. The game of Pasur involves dealing cards, playing cards to the pool, and picking up cards from the pool, with the objective of winning the most points. The project also includes documentation and test files for testing the functionality of the trainer.
